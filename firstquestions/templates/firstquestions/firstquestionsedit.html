@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block title %}First set{% endblock %}
+{% block content %}
+
+
+{% if project.developer.id == user.id %}
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2> Edit User Centered Design </h2>
+      <h5>First set of ten macroquestions</h5>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group mt-4">
+          <label for="exampleFormControlTextarea1">State the problem being solved</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="first_one">{{project.firstquestion.first_one}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Who are the beneficiaries of this project?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="first_two">{{project.firstquestion.first_two}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">How did you discover the issues around the problem and beneficiaries?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="first_three">{{project.firstquestion.first_three}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">When did you stop scoping the problem, how and why?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="first_four">{{project.firstquestion.first_four}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Why is the solution better than those already in place or planned?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="first_five">{{project.firstquestion.first_five}}</textarea>
+        </div>
+
+        <label for="exampleFormControlTextarea1">At what stage is your solution?</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="first_six" id="exampleRadios1" value="Idea" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            Idea
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="first_six" id="exampleRadios2" value="R&D">
+          <label class="form-check-label" for="exampleRadios2">
+            R&D
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="first_six" id="exampleRadios3" value="Design">
+          <label class="form-check-label" for="exampleRadios3">
+            Design
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="first_six" id="exampleRadios4" value="Proof of concept">
+          <label class="form-check-label" for="exampleRadios4">
+            Proof of concept
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="first_six" id="exampleRadios5" value="Demonstrable">
+          <label class="form-check-label" for="exampleRadios5">
+            Demonstrable
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="first_six" id="exampleRadios6" value="In compliance testing">
+          <label class="form-check-label" for="exampleRadios6">
+            In compliance testing
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="first_six" id="exampleRadios7" value="In user testing">
+          <label class="form-check-label" for="exampleRadios7">
+            In user testing
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="first_six" id="exampleRadios8" value="Early release">
+          <label class="form-check-label" for="exampleRadios8">
+            Early release
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="first_six" id="exampleRadios9" value="Release">
+          <label class="form-check-label" for="exampleRadios9">
+            Release
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="first_six" id="exampleRadios10" value="Redevelopment">
+          <label class="form-check-label" for="exampleRadios10">
+            Redevelopment
+          </label>
+        </div>
+
+<!--         <div class="form-group">
+          <label for="exampleFormControlTextarea1">Why is the solution better then the one already in place or planned?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="first_seven">{{project.firstquestion.first_seven}}</textarea>
+        </div> -->
+
+        <button type="submit" class="mt-4 btn btn-primary">Submit your User Centered Design answers</button>
+      </form>
+      <button type="submit" class="mt-4 btn btn-light">Go back to questions</button>
+    </div>
+
+  </div>
+</div>
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+
+
+{% endblock %}
+

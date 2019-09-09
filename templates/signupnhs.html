@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
+
+<!-- <form method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+
+  <button type="submit">Sign up</button>
+</form> -->
+
+
+<!-- {% for field in form %}
+{{field.as_p}}
+{% endfor %} -->
+
+<div class="container">
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+      <h2>Sign up for NHS</h2>
+      <form method="post">
+        {% csrf_token %}
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Username</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="username" placeholder=""></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" name="email" pattern="^[a-z0-9](\.?[a-z0-9-_.]){1,}@nhs(.com|.net|.uk|.wales)|([a-z0-9](\.?[a-z0-9-_.]){1,}@nhsx.nhs(.com|.net|.uk|.wales))$">
+          <small id="emailHelp" class="form-text text-muted">The email must:
+            <ul>
+              <li>Contain: @nhs</li>
+              <li>e.g. @nhs.uk</li>
+              <li>e.g. @nhs.net</li>
+              <li>e.g. @nhsx.nhs.uk</li>
+              <li>e.g. @nhs.wales</li>
+            </ul>
+            </small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="" name="password1">
+            <small id="emailHelp2" class="form-text text-muted">The password must:
+            <ul>
+              <li>Cannot be similar to username or email</li>
+              <li>Contain at least 8 characters</li>
+              <li>Cannot be common such as: password12!</li>
+              <li>Cannot be entirely numeric</li>
+            </ul>
+            </small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword2">Re-type Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="" name="password2">
+            <small id="emailHelp2" class="form-text text-muted">Write same password as before</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">First name</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="first_name" placeholder=""></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Last name</label>
+            <textarea class="form-control" id="exampleFormControlTextarea2" rows="1" name="last_name" placeholder=""></textarea>
+          </div>
+                    <div class="form-group">
+            <label for="exampleFormControlTextarea1">Organization</label>
+            <textarea class="form-control" id="exampleFormControlTextarea3" rows="1" name="organization" placeholder=""></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Location</label>
+            <textarea class="form-control" id="exampleFormControlTextarea4" rows="1" name="location" placeholder=""></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Postcode</label>
+            <textarea class="form-control" id="exampleFormControlTextarea5" rows="1" name="postcode" placeholder=""></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Phone</label>
+            <textarea class="form-control" id="exampleFormControlTextarea6" rows="1" name="phone" placeholder=""></textarea>
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="agree_conditions" checked>
+            <label class="form-check-label" for="exampleCheck1">Agree conditions</label>
+            <a href="{% url 'conditions'%}">Click here to see the conditions you are accepting</a>
+          <div class="form-check" hidden>
+          <input class="form-check-input" type="radio" name="is_nhs" id="exampleRadios1" value="Yes" required checked>
+          <label class="form-check-label" for="exampleRadios1">
+            Yes
+          </label>
+        </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load staticfiles %}
+{% block content %}
+
+  <div class="ml-1 mr-2 container-fluid">
+    <div class="row" style="background-color:">
+      <div class="mt-4 offset-md-0 col-md-12 text-center">
+<div class="mt-4 jumbotron">
+  <h1 class="display-4 text-center">Rankings of all the projects</h1>
+  <p class="lead mt-4 text-center">The rankings are divided in two main groups:</p>
+  <ol style="list-style-type:none">
+    <li>1. Unaudited projects - If the project has not been audited by a NHS entity </li>
+    <li>2. Audited projects - If the project has been audited by a NHS entity</li>
+  </ol>
+  <p class="lead mt-4 text-center"> Each of these group is ranked based on:</p>
+  <ol style="list-style-type:none">
+    <li>1. By number of solutions - How many other projects the agency has submitted in the past</li>
+    <li>2. By application group - How many other projects did the agency has submitted in an application group</li>
+  </ol>
+</div>
+</div>
+      <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+      </div>
+    </div>
+
+      {% if user.is_nhs %}
+            <h4 class="mt-4 text-center" style="background-color: rgba(181, 209, 255, 0.5)">UNAUDITED PROJECTS RANKING</h4>
+
+          <div class="row">
+            <div class="mt-1 offset-md-0 col-md-6" style="background-color: rgba(181, 209, 255, 0.1)">
+              <h5 class="text-center">BY NUMBER OF SOLUTIONS</h5>
+              <table class="table">
+                <thead class="thead-light text-center">
+                  <tr>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Agency</th>
+                    <th scope="col">Solutions</th>
+                  </tr>
+                </thead>
+
+                {% for k,v in sorted_unaudited_by_solution %}
+
+                <tbody>
+                  <tr>
+                    {% if not k.is_superuser  %}
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td> {{ k.organization }} </td>
+                    <td>
+                    {% for f in v%}
+                      {{forloop.counter}}-<a href="{% url 'statistics' f.id %}"> {{f.title}}</a>
+                      <br>
+
+                    {%endfor %}
+                     </td>
+                    {% endif %}
+                  </tr>
+                </tbody>
+                {% endfor %}
+              </table>
+            </div>
+
+
+            <div class="mt-1 offset-md-0 col-md-6" style="background-color: rgba(173, 225, 255, 0.2)">
+              <h5 class="text-center">BY APPLICATION GROUP</h5>
+              <table class="table">
+                <thead class="thead-light text-center">
+                  <tr>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Project</th>
+                    <th scope="col">Application group</th>
+                  </tr>
+                </thead>
+
+                {% for k,v in sorted_unaudited_by_application_group.items %}
+                <tbody>
+                  <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td> <a href="{% url 'statistics' k.id %}"> {{k.title}}</a></td>
+                    <td>{{v}}</td>
+                  </tr>
+
+                </tbody>
+                {% endfor %}
+              </table>
+
+            </div>
+          </div>
+
+            <h4 class="mt-4 text-center" style="background-color: rgba(181, 209, 255, 0.5)">AUDITED PROJECTS RANKING</h4>
+          <div class="row">
+            <div class="mt-1 offset-md-0 col-md-6" style="background-color: rgba(173, 225, 255, 0.2)">
+              <h5 class="text-center">BY NUMBER OF SOLUTIONS</h5>
+              <table class="table">
+                <thead class="thead-light text-center">
+                  <tr>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Agency</th>
+                    <th scope="col">Solutions</th>
+                  </tr>
+                </thead>
+            {% for k,v in sorted_audited_by_solution %}
+
+                <tbody>
+                  <tr>
+                    {% if not k.is_superuser  %}
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td> {{ k.organization }} </td>
+                    <td>
+                    {% for f in v%}
+
+                      {{forloop.counter}}-<a href="{% url 'statistics' f.id %}"> {{f.title}}</a>
+                      <br>
+
+                    {%endfor %}
+                     </td>
+                    {% endif %}
+                  </tr>
+                </tbody>
+                {% endfor %}
+              </table>
+            </div>
+            <div class="mt-1 offset-md-0 col-md-6" style="background-color: rgba(181, 209, 255, 0.1)">
+              <h5 class="text-center">BY APPLICATION GROUP</h5>
+                      <table class="table">
+                        <thead class="thead-light text-center">
+                          <tr>
+                            <th scope="col">Rank</th>
+                            <th scope="col">Project</th>
+                            <th scope="col">Application group</th>
+                          </tr>
+                        </thead>
+
+                        {% for k,v in sorted_audited_by_application_group.items %}
+                        <tbody>
+                          <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td> <a href="{% url 'statistics' k.id %}"> {{k.title}} </a> </td>
+                            <td>{{v}}</td>
+                          </tr>
+                        </tbody>
+                        {% endfor %}
+              </table>
+            </div>
+          </div>
+
+
+            <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+            <a class="mt-4 btn btn-primary" href="{% url 'allprojects' %}">See all projects</a>
+            </div>
+          </div>
+
+
+
+      {% else %}
+          <div class="row" style="background-color: red">
+            <div class="mt-4 offset-md-2 col-md-8 text-center">
+              <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+            </div>
+            <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+            <a class="mt-4 btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+            </div>
+          </div>
+      {% endif %}
+
+  </div>
+
+
+
+</body>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block title %}Sixth set{% endblock %}
+{% block content %}
+{% if project.developer.id == user.id or user.is_nhs %}
+
+<div class="container">
+  <div class="row" style="background-color:">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h4>You are viewing the answers to:</h4>
+            <h2>Transparency in data science</h2>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row" style="background-color: ">
+    <div class="mt-4 offset-md-0 col-md-8">
+    <h2>Transparency in data science</h2>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card-body">
+          <h5>Is the transparency of your solution auditble?</h5>
+          <p class="card-text"><small class="text-muted">{{project.sixthquestion.sixth_thirteen}}</small></p>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+                <h5>For your solution upload:</h5>
+        <div class="card-body">
+          <h5>Your review of the data used to create the solution e.g. data quality, data quality, completeness...</h5>
+          {% if project.sixthquestion.sixth_one != "There-is-no-file" and project.sixthquestion.sixth_one %}
+            <a href="{{ MEDIA_URL }}{{project.sixthquestion.sixth_one.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Your analysis of any limitations in the data set:</h5>
+          {% if project.sixthquestion.sixth_two != "There-is-no-file" and project.sixthquestion.sixth_two %}
+            <a href="{{ MEDIA_URL }}{{project.sixthquestion.sixth_two.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>Your rationale for limiting the data set:</h5>
+          {% if project.sixthquestion.sixth_three != "There-is-no-file" and project.sixthquestion.sixth_three %}
+            <a href="{{ MEDIA_URL }}{{project.sixthquestion.sixth_three.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>Your procedure for monitoring the appropriateness of existing processes:</h5>
+          {% if project.sixthquestion.sixth_four != "There-is-no-file" and project.sixthquestion.sixth_four%}
+            <a href="{{ MEDIA_URL }}{{project.sixthquestion.sixth_four.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>Your understanding of the risks associated with the data used for training and in deployment:</h5>
+          {% if project.sixthquestion.sixth_five != "There-is-no-file" and project.sixthquestion.sixth_five%}
+            <a href="{{ MEDIA_URL }}{{project.sixthquestion.sixth_five.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>How do you audit the decisions made with data?</h5>
+          {% if project.sixthquestion.sixth_six != "There-is-no-file" and project.sixthquestion.sixth_six %}
+            <a href="{{ MEDIA_URL }}{{project.sixthquestion.sixth_six.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>How do you mitigate the risks associated with the data used?</h5>
+          {% if project.sixthquestion.sixth_seven != "There-is-no-file" and project.sixthquestion.sixth_seven%}
+            <a href="{{ MEDIA_URL }}{{project.sixthquestion.sixth_seven.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+        </div>
+
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Which external libraries do you apply in your solution?</h5>
+          <p class="card-text"><small class="text-muted">{{project.sixthquestion.sixth_eight}}</small></p>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Where is the dataset used maintained?</h5>
+          <p class="card-text"><small class="text-muted">{{project.sixthquestion.sixth_nine}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Who designed, developed and implemented the data science associated with your solution?</h5>
+          <p class="card-text"><small class="text-muted">{{project.sixthquestion.sixth_ten}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>What was the reason you decided to issue your solution?</h5>
+          <p class="card-text"><small class="text-muted">{{project.sixthquestion.sixth_eleven}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>On what date do you expect to release and update your solution?</h5>
+          <p class="card-text"><small class="text-muted">{{project.sixthquestion.sixth_twelve}}</small></p>
+        </div>
+      </div>
+
+{% if project.developer.id == user.id %}
+
+    <a href="{% url 'sixthquestionsedit' project.id %}" class="btn btn-primary btn-block"> Edit Transparency in data science questions</a>
+{%endif%}
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+  </div>
+</div>
+
+{% endblock %}
+
+
+

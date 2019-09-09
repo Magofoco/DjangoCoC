@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Create Project{% endblock %}
+{% block content %}
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2>Create a new project</h2>
+      <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Title of the project</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="title" placeholder="" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea2">Brief description of this project</label>
+          <textarea class="form-control" id="exampleFormControlTextarea2" rows="5" name="content" placeholder="" required ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+
+
+

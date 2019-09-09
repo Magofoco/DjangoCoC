@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% block title %}fourth set{% endblock %}
+{% block content %}
+{% load static %}
+{% if project.developer.id == user.id %}
+
+<!-- {% load crispy_forms_tags %}
+
+
+
+<form method="post" action="{% url 'fourthquestionstoanswer' project.pk %}">>
+  {% csrf_token %}
+  {{ form|crispy}}
+  <button type="submit">Submit</button>
+</form>
+-->
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2> Data protection </h2>
+      <h5>Fourth set of ten macroquestions</h5>
+      <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+        <label for="exampleFormControlTextarea1">Have you consider all aspects of the Data Protection Act 2018?
+        </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="fourth_one" id="exampleRadios1" value="Yes" required>
+          <label class="form-check-label" for="exampleRadios1">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="fourth_one" id="exampleRadios2" value="No" checked required>
+          <label class="form-check-label" for="exampleRadios2">
+            No
+          </label>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">How do you assure users are informed about the collection and use of personal data?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="fourth_two">{{project.fourthquestion.fourth_two}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">How do you ensure individuals/groups featured in your data cannot be discriminated against?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="fourth_three">{{project.fourthquestion.fourth_three}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">What insights are created in the data that need to be protected?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="fourth_four">{{project.fourthquestion.fourth_four}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Is your organizations dependent on data from third parties applications?
+            - If yes, write the organisation's name and its postal and email contact details
+            - If no, leave blank
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="fourth_five">{{project.fourthquestion.fourth_five}}</textarea>
+        </div>
+
+        <label for="customFile1">Upload your DPIA evidence here:
+        </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile1" name="fourth_six" accept="application/pdf" >
+          <label class="custom-file-label" for="customFile1">{{project.fourthquestion.fourth_six}}</label>
+          <script>
+            $('#customFile1').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+
+          <label class="mt-2" for="customFile2">Upload your Data Protection Impact Statement here:
+          </label>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile2" name="fourth_seven" accept="application/pdf" >
+            <label class="custom-file-label" for="customFile2">{{project.fourthquestion.fourth_seven}}</label>
+            <script>
+              $('#customFile2').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+          <label for="exampleFormControlTextarea1">Are you putting the user in control of their own data?
+          </label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="fourth_eight" id="exampleRadios3" value="Yes" checked>
+            <label class="form-check-label" for="exampleRadios3">
+              Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="fourth_eight" id="exampleRadios4" value="No" required>
+            <label class="form-check-label" for="exampleRadios4" checked>
+              No
+            </label>
+          </div>
+
+          <label for="customFile3">If yes, upload here how this is achieved, if no leave blank:
+          </label>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile3" name="fourth_nine" accept="application/pdf">
+            <label class="custom-file-label" for="customFile3">Choose PDF file</label>
+            <script>
+              $('#customFile3').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+<!--           <label for="exampleFormControlTextarea1">Are you putting the user in control of their own data?
+          </label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="fourth_nine" id="exampleRadios5" value="No" required>
+            <label class="form-check-label" for="exampleRadios5">
+              Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="fourth_nine" id="exampleRadios6" value="No">
+            <label class="form-check-label" for="exampleRadios6" checked>
+              No
+            </label>
+          </div>
+
+
+          <label for="customFile4">If yes, upload here how this is achieved, if no leave blank:
+          </label>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile4" name="fourth_ten" accept="application/pdf">
+            <label class="custom-file-label" for="customFile4">Choose PDF file</label>
+            <script>
+              $('#customFile4').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div> -->
+
+
+
+          <button type="submit" class="mt-4 btn btn-primary">Edit your Data Protection answers</button>
+        </form>
+      </div>
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+    </div>
+  </div>
+  {% endblock %}
+
+

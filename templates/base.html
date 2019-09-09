@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+{% load staticfiles %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+</head>
+
+{% load static %}
+{% load staticfiles %}
+
+<body>
+
+  {% load staticfiles %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'home' %}">
+
+        <img src="{% static 'nhslogo.png'%}" height=33 class="d-inline-block alighn-top" />
+        Code of Conduct
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          {% if user.is_authenticated and not user.is_nhs %}
+          <a class="nav-item nav-link" href="{% url 'createproject' %}">New project</a>
+
+          <a class="nav-item nav-link" href="{% url 'allprojects' %}">My projects</a>
+
+          <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
+          <form id="logout" method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <input type="hidden" />
+          </form>
+          {% elif user.is_authenticated and user.is_nhs %}
+          <a class="nav-item nav-link" href="{% url 'allprojects' %}">All projects</a>
+      <a class="nav-item nav-link" href="{% url 'nhsstatistics' %}">Rankings</a>
+          <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}" onclick="">Logout</a>
+          <form id="logout" method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <input type="hidden" />
+          </form>
+
+
+          {% else %}
+          <a class="nav-item nav-link" href="{% url 'signup' %}">Sign Up</a>
+          <a class="nav-item nav-link" href="{% url 'signupnhs' %}">NHS Sign Up</a>
+          <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+          {% endif %}
+
+
+        </div>
+      </div>
+    </nav>
+
+
+
+
+    {% block content %}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+    {% endblock %}
+
+<div class="footer">
+<div class="row">
+   <a class="nav-item nav-link" href="{% url 'conditions' %}">Conditions</a>
+   <a class="nav-item nav-link" href="https://www.nhsx.nhs.uk/">About Us</a>
+</div>
+
+
+</div>
+
+</body>
+</html>

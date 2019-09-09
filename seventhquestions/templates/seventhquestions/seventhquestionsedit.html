@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% block title %}Seventh set{% endblock %}
+{% block content %}
+{% load static %}
+{% if project.developer.id == user.id %}
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2> Explainability and Ethical use</h2>
+      <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        {% csrf_token %}
+      <label for="customFile1">Upload details which will enable a member of the general public to understand how the solution delivers benefits:
+        </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile1" name="seventh_one" accept="application/pdf">
+          <label class="custom-file-label" for="customFile1">{{project.seventhquestion.seventh_one}}</label>
+          <script>
+            $('#customFile1').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+        <label class="mt-4" for="customFile2"> Upload the dependencies which effect how your solution may perform:
+        </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile2" name="seventh_two" accept="application/pdf">
+          <label class="custom-file-label" for="customFile2">{{project.seventhquestion.seventh_two}}</label>
+          <script>
+            $('#customFile2').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+        <label class="mt-4" for="customFile3"> Which user groups have you tested your approach with?
+        </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile3" name="seventh_three" accept="application/pdf">
+          <label class="custom-file-label" for="customFile3">{{project.seventhquestion.seventh_three}}</label>
+          <script>
+            $('#customFile3').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+        <label class="mt-4" for="customFile4"> Describe how your solution effects the ethical delivery of healthcare at an individual/group/social level
+        </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile4" name="seventh_four" accept="application/pdf">
+          <label class="custom-file-label" for="customFile4">{{project.seventhquestion.seventh_four}}</label>
+          <script>
+            $('#customFile4').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+
+
+
+        <label class="mt-4" for="exampleFormControlTextarea1">Is your solution auditable?
+        </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="seventh_five" id="exampleRadios1" value="Yes" required>
+          <label class="form-check-label" for="exampleRadios1">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="seventh_five" id="exampleRadios2" value="No" checked required>
+          <label class="form-check-label" for="exampleRadios2">
+            No
+          </label>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea2">If yes, how? Else leave blank
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea2" rows="5" name="seventh_six">{{project.seventhquestion.seventh_six}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea3">To which group of users is a bias over 20% evidenced?
+
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea3" rows="5" name="seventh_seven" >{{project.seventhquestion.seventh_seven}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea4">For the users in this group, which steps have you taken to mitigate the bias?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea4" rows="5" name="seventh_eight">{{project.seventhquestion.seventh_eight}}</textarea>
+        </div>
+
+
+
+
+  <button type="submit" class="mt-4 btn btn-primary">Edit your Explainability and Ethical use answers</button>
+        </form>
+      </div>
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+    </div>
+  </div>
+  {% endblock %}
+
+

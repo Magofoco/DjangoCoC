@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}First set{% endblock %}
+{% block content %}
+
+{% if project.developer.id == user.id or user.is_nhs %}
+
+<div class="container">
+  <div class="row" style="background-color:">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h4>You are viewing the answers to:</h4>
+            <h2>Categorisation questions</h2>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row" style="background-color: ">
+    <div class="mt-4 offset-md-0 col-md-8">
+          <h2>Answers to the Categorisation Questions</h2>
+    </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>How do you classify your data-driven solution? Select as many as applicable</h5>
+          <p class="mt-2 card-text"><small class="text-muted">
+          {%for e in project.initialquestion.initial_one%}
+            {{e}}
+            <br>
+          {% endfor %}
+          </small></p>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>At which point of care do you expect your data-driven solution to be deployed? Select as many as applicable</h5>
+          <p class="card-text"><small class="text-muted">
+            {%for e in project.initialquestion.initial_two%}
+              {{e}}
+              <br>
+            {% endfor %}
+</small></p>
+        </div>
+      </div>
+    {% if project.developer.id == user.id %}
+
+        <a href="{% url 'initialquestionsedit' project.id %}" class="btn btn-primary btn-block"> Edit Categorisation question</a>
+    {% endif %}
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+
+  </div>
+</div>
+{% endblock %}
+
+

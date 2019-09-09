@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% block title %}Edit initial questions {% endblock %}
+{% block content %}
+
+{% if project.developer.id == user.id %}
+
+<!-- <script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+ -->
+
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2> Edit Categorisation questions </h2>
+      <form method="post" class="needs-validation">
+        {% csrf_token %}
+
+        <label for="exampleFormControlTextarea1">How do you classify your data-driven solution? Select as many as applicable (at least one)</label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_one" value="Diagnostic" id="defaultCheck1" checked>
+            <label class="form-check-label" for="defaultCheck1">
+              Diagnostic
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_one" value="Therapeutic" id="defaultCheck2">
+            <label class="form-check-label" for="defaultCheck2">
+              Therapeutic
+            </label>
+          </div>
+<div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_one" value="Population health" id="defaultCheck3">
+            <label class="form-check-label" for="defaultCheck3">
+              Population health
+            </label>
+          </div>
+<div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_one" value="Care-based" id="defaultCheck4">
+            <label class="form-check-label" for="defaultCheck4">
+              Care-based
+            </label>
+          </div>
+<div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_one" value="Triage" id="defaultCheck5">
+            <label class="form-check-label" for="defaultCheck5">
+              Triage
+            </label>
+          </div>
+<div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_one" value="Self-care" id="defaultCheck6">
+            <label class="form-check-label" for="defaultCheck6">
+              Self-care
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_one" value="Health promotion" id="defaultCheck7">
+            <label class="form-check-label" for="defaultCheck7">
+              Health promotion
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_one" value="Remote Monitoring" id="defaultCheck8">
+            <label class="form-check-label" for="defaultCheck8">
+              Remote Monitoring
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_one" value="Remote Consultation" id="defaultCheck9">
+            <label class="form-check-label" for="defaultCheck9">
+              Remote Consultation
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_one" value="Other" id="defaultCheck10">
+            <label class="form-check-label" for="defaultCheck10">
+              Other
+            </label>
+          </div>
+
+
+
+
+        <label class="mt-4" for="exampleFormControlTextarea1">At which point of care do you expect your data-driven solution to be deployed? Select as many as applicable (at least one)</label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_two" value="Primary Care" id="defaultCheck11" checked>
+            <label class="form-check-label" for="defaultCheck11">
+              Primary Care
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_two" value="Secondary Care" id="defaultCheck12">
+            <label class="form-check-label" for="defaultCheck12">
+              Secondary Care
+            </label>
+          </div>
+<div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_two" value="Tertiary Care" id="defaultCheck13">
+            <label class="form-check-label" for="defaultCheck13">
+              Tertiary Care
+            </label>
+          </div>
+<div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_two" value="Individual Care of Self" id="defaultCheck14">
+            <label class="form-check-label" for="defaultCheck14">
+              Individual Care of Self
+            </label>
+          </div>
+<div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_two" value="Triage" id="defaultCheck15">
+            <label class="form-check-label" for="defaultCheck15">
+              Triage
+            </label>
+          </div>
+<div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_two" value="Population screening" id="defaultCheck16">
+            <label class="form-check-label" for="defaultCheck16">
+              For the purposes of population screening
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="initial_two" value="Other" id="defaultCheck17">
+            <label class="form-check-label" for="defaultCheck17">
+              Other
+            </label>
+          </div>
+
+
+        <button type="submit" class="mt-4 btn btn-primary">Submit your Categorisation questions answers</button>
+      </form>
+      <a class="mt-4 btn btn-light" href="{% url 'projectdetail' project.id %}">Go back</a>
+    </div>
+
+  </div>
+</div>
+
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+
+{% endblock %}
+
+
+
+
+<!-- <form method='post'>
+    {{ form.as_p }}
+    <input type='submit' value='submit'>
+</form>
+ -->

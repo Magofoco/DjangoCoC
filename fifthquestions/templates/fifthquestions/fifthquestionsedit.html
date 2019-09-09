@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block title %}Fifth set{% endblock %}
+{% block content %}
+{% load static %}
+
+{% if project.developer.id == user.id %}
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2> Openness </h2>
+      <h5>Fifth set of ten macroquestions</h5>
+      <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+        <label for="exampleFormControlTextarea1">Is the solution open source?
+        </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="fifth_one" id="exampleRadios1" value="Yes" required>
+          <label class="form-check-label" for="exampleRadios1">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="fifth_one" id="exampleRadios2" value="No" checked required>
+          <label class="form-check-label" for="exampleRadios2">
+            No
+          </label>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">If yes, post here the link where it is possible to download it:
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="fifth_two">{{project.fifthquestion.fifth_two}}</textarea>
+        </div>
+
+
+        <label for="exampleFormControlTextarea1">Does your solution comply with any open standard?
+        </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="fifth_three" id="exampleRadios2" value="Yes" required>
+          <label class="form-check-label" for="exampleRadios2">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="fifth_three" id="exampleRadios3" value="No" checked required>
+          <label class="form-check-label" for="exampleRadios3">
+            No
+          </label>
+        </div>
+
+          <div class="form-group">
+          <label for="exampleFormControlTextarea2">If yes, post here the link where it is possible to download it?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea2" rows="5" name="fifth_four">{{project.fifthquestion.fifth_four}}</textarea>
+        </div>
+
+                <label for="exampleFormControlTextarea1">Does your system comply with any open standard?
+        </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="fifth_five" id="exampleRadios4" value="Yes" required>
+          <label class="form-check-label" for="exampleRadios4">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="fifth_five" id="exampleRadios5" value="No" checked required>
+          <label class="form-check-label" for="exampleRadios5">
+            No
+          </label>
+        </div>
+
+          <div class="form-group">
+          <label for="exampleFormControlTextarea3">If yes, write the URL of the standard here:
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea3" rows="5" name="fifth_six">{{project.fifthquestion.fifth_six}}</textarea>
+        </div>
+
+
+
+          <button type="submit" class="mt-4 btn btn-primary">Submit your Openness answers</button>
+        </form>
+      </div>
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+
+    </div>
+  </div>
+  {% endblock %}
+
+

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block title %}First set{% endblock %}
+{% block content %}
+
+{% if project.developer.id == user.id or user.is_nhs%}
+
+<div class="container">
+  <div class="row" style="background-color: ">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h4>You are viewing the answers to:</h4>
+            <h2>User Centered Design</h2>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row" style="background-color: ">
+    <div class="mt-4 offset-md-0 col-md-8">
+            <h2>User Centered Design Answers</h2>
+    </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>State the problem being solved</h5>
+          <p class="card-text"><small class="text-muted">{{project.firstquestion.first_one}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Who are the beneficiaries of this project?</h5>
+          <p class="card-text"><small class="text-muted">{{project.firstquestion.first_two}}</small></p>
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>How did you discover the issues around the problem and benefits?</h5>
+          <p class="card-text"><small class="text-muted">{{project.firstquestion.first_three}}</small></p>
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>When did you stop scoping the problem, how and why?</h5>
+          <p class="card-text"><small class="text-muted">{{project.firstquestion.first_four}}</small></p>
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>Why is the solution better than those already in place or planned?</h5>
+          <p class="card-text"><small class="text-muted">{{project.firstquestion.first_five}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>At what stage is your solution?</h5>
+          <p class="card-text"><small class="text-muted">{{project.firstquestion.first_six}}</small></p>
+        </div>
+      </div>
+<!--             <div class="col-md-8">
+        <div class="card-body">
+          <h5>Why is the solution better then the one already in place or planned?</h5>
+          <p class="card-text"><small class="text-muted">{{project.firstquestion.first_seven}}</small></p>
+        </div>
+      </div> -->
+
+    {% if project.developer.id == user.id %}
+
+    <a href="{% url 'firstquestionsedit' project.id %}" class="btn btn-primary btn-block"> Edit User Centered Design questions </a>
+
+    {% endif %}
+
+
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+
+  </div>
+</div>
+{% endblock %}
+
+

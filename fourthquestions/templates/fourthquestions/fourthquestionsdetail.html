@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block title %}Fourth set{% endblock %}
+{% block content %}
+{% if project.developer.id == user.id or user.is_nhs%}
+
+<div class="container">
+  <div class="row" style="background-color:">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h4>You are viewing the answers to:</h4>
+            <h2>Data protection</h2>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row" style="background-color: ">
+    <div class="mt-4 offset-md-0 col-md-8">
+    <h2>Data protection</h2>
+    </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Have you consider all aspects of the Data Protection Act 2018?</h5>
+          <p class="card-text"><small class="text-muted">{{project.fourthquestion.fourth_one}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>How do you assure users are informed about the collection and use of personal data?</h5>
+          <p class="card-text"><small class="text-muted">{{project.fourthquestion.fourth_two}}</small></p>
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>How do you ensure individuals/groups featured in your data cannot be discriminated against?</h5>
+          <p class="card-text"><small class="text-muted">{{project.fourthquestion.fourth_three}}</small></p>
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>What insights are created in the data that need to be protected?</h5>
+          <p class="card-text"><small class="text-muted">{{project.fourthquestion.fourth_four}}</small></p>
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>Is your organizations dependent on data from third parties applications?
+            - If yes, write the organisation's name and its postal and email contact details
+            - If no, leave blank</h5>
+          <p class="card-text"><small class="text-muted">{{project.fourthquestion.fourth_five}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Upload your DPIA evidence here:</h5>
+          {% if project.fourthquestion.fourth_six != "There-is-no-file" and project.fourthquestion.fourth_six%}
+          <a href="{{ MEDIA_URL }}{{project.fourthquestion.fourth_six.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+        </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Upload your Data Protection Impact Statement here:</h5>
+          {% if project.fourthquestion.fourth_seven != "There-is-no-file" and project.fourthquestion.fourth_seven%}
+          <a href="{{ MEDIA_URL }}{{project.fourthquestion.fourth_seven.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Are you putting the user in control of their own data?</h5>
+          <p class="card-text"><small class="text-muted">{{project.fourthquestion.fourth_eight}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>If yes, upload here how this is achieved, if no leave blank:</h5>
+          {% if project.fourthquestion.fourth_nine != "There-is-no-file" and project.fourthquestion.fourth_nine%}
+            <a href="{{ MEDIA_URL }}{{project.fourthquestion.fourth_nine.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+
+{% if project.developer.id == user.id %}
+
+
+    <a href="{% url 'fourthquestionsedit' project.id %}" class="btn btn-primary btn-block"> Edit Data Protection questions</a>
+
+{% endif%}
+
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+

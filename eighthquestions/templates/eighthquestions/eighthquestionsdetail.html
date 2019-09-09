@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% block title %}Eighth set{% endblock %}
+{% block content %}
+{% if project.developer.id == user.id or user.is_nhs%}
+
+<div class="container">
+  <div class="row" style="background-color:">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h4>You are viewing the answers to:</h4>
+            <h2>Risks and Rewards</h2>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row" style="background-color: ">
+    <div class="mt-4 offset-md-0 col-md-8">
+    <h2>Risk and Rewards</h2>
+    </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Against NICE guidelines. Is your solution compliant against: TIER ONE</h5>
+          <p class="card-text"><small class="text-muted">{{project.eighthquestion.eighth_one}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Against NICE guidelines. Is your solution compliant against: TIER TWO</h5>
+          <p class="card-text"><small class="text-muted">{{project.eighthquestion.eighth_two}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Against NICE guidelines. Is your solution compliant against: TIER THREE</h5>
+          <p class="card-text"><small class="text-muted">{{project.eighthquestion.eighth_three}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Against NICE guidelines. Is your solution compliant against: TIER FOUR</h5>
+          <p class="card-text"><small class="text-muted">{{project.eighthquestion.eighth_four}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Upload your evidence against: TIER ONE</h5>
+          {% if project.eighthquestion.eighth_five != "There-is-no-file" and project.eighthquestion.eighth_five %}
+            <a href="{{ MEDIA_URL }}{{project.eighthquestion.eighth_five.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Upload your evidence against: TIER TWO</h5>
+          {% if project.eighthquestion.eighth_six != "There-is-no-file" and project.eighthquestion.eighth_six%}
+            <a href="{{ MEDIA_URL }}{{project.eighthquestion.eighth_six.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>Upload your evidence against: TIER THREE</h5>
+          {% if project.eighthquestion.eighth_seven != "There-is-no-file" and project.eighthquestion.eighth_seven %}
+            <a href="{{ MEDIA_URL }}{{project.eighthquestion.eighth_seven.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>Upload your evidence against: TIER FOUR</h5>
+          {% if project.eighthquestion.eighth_eight != "There-is-no-file" and project.eighthquestion.eighth_eight%}
+            <a href="{{ MEDIA_URL }}{{project.eighthquestion.eighth_eight.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5> What health economics tools have you applied to your solution?</h5>
+          {% if project.eighthquestion.eighth_nine != "There-is-no-file" and project.eighthquestion.eighth_nine%}
+            <a href="{{ MEDIA_URL }}{{project.eighthquestion.eighth_nine.url}}">See your uploaded PDF</a>
+          {% endif %}
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>What are the results of the health economics analysis?</h5>
+          <p class="card-text"><small class="text-muted">{{project.eighthquestion.eighth_ten}}</small></p>
+        </div>
+      </div>
+          <div class="col-md-8">
+        <div class="card-body">
+          <h5>In which health and social care providers have these health economic results be evidenced?</h5>
+          <p class="card-text"><small class="text-muted">{{project.eighthquestion.eighth_eleven}}</small></p>
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>Please provide contact details of users who can independently verify your claims</h5>
+          <p class="card-text"><small class="text-muted">{{project.eighthquestion.eighth_twelve}}</small></p>
+        </div>
+      </div>
+{% if project.developer.id == user.id %}
+
+    <a href="{% url 'eighthquestionsedit' project.id %}" class="btn btn-primary btn-block"> Edit Risks and Rewards questions</a>
+    {%endif%}
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+

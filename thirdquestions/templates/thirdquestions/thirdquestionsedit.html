@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% block title %}third set{% endblock %}
+{% block content %}
+{% load static %}
+{% if project.developer.id == user.id %}
+
+<!-- {% load crispy_forms_tags %}
+
+
+
+<form method="post" action="{% url 'thirdquestionstoanswer' project.pk %}">>
+  {% csrf_token %}
+  {{ form|crispy}}
+  <button type="submit">Submit</button>
+</form>
+-->
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2> Edit Data use </h2>
+      <h5>Third set of ten macroquestions</h5>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group mt-4">
+          <label for="exampleFormControlTextarea1">Is data gathered in the solution solely used for the purpose for which it is gathered?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="third_one">{{project.thirdquestion.third_one}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">What data is gathered?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="third_two">{{project.thirdquestion.third_two}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">What insights are created via the data?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="third_three">{{project.thirdquestion.third_three}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Does the solution create data or insights that are used by third parties?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="third_four">{{project.thirdquestion.third_four}}</textarea>
+        </div>
+
+        <label for="exampleFormControlTextarea1">If third parties are involved, who are they?
+        </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="third_five" id="exampleRadios1" value="Data controller" checked>
+          <label class="form-check-label" for="exampleRadios1" checked>
+            Data controller
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="third_five" id="exampleRadios2" value="Data processor">
+          <label class="form-check-label" for="exampleRadios2">
+            Data processor
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="third_five" id="exampleRadios3" value="Data processor">
+          <label class="form-check-label" for="exampleRadios3">
+            No third parties
+          </label>
+        </div>
+
+
+        <div class="mt-3 form-group">
+          <label for="exampleFormControlTextarea1">If third parties are involved, state organisation name, post and email address below, else leave blank:
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="third_six">{{project.thirdquestion.third_six}}</textarea>
+        </div>
+
+
+        <label for="customFile1">Under which terms does your data acquisition and data sharing take place? Upload terms here:
+        </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile1" name="third_seven" accept="application/pdf">
+          <label class="custom-file-label" for="customFile2">Choose PDF file</label>
+          {{project.thirdquestion.third_seven}}
+        </div>
+
+        <div class="mt-3 form-group">
+          <label for="exampleFormControlTextarea1">What data do you need to maintain your solutions model?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="third_eight" default="no">{{project.thirdquestion.third_eight}}</textarea>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Under which terms is the data acquired?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="third_nine" default="no">{{project.thirdquestion.third_nine}}</textarea>
+        </div>
+
+        <label for="customFile2">Upload your data flow diagram here:
+        </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile2" name="third_ten" accept="application/pdf">
+          <label class="custom-file-label" for="customFile2">Choose PDF file</label>
+                    {{project.thirdquestion.third_ten}}
+        </div>
+
+        <button type="submit" class="mt-4 btn btn-primary">Edit your Data Use</button>
+      </form>
+    </div>
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+  </div>
+</div>
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,441 @@
+{% extends 'base.html' %}
+{% block title %}Create Project{% endblock %}
+{% block content %}
+
+{% if messages %}
+<div class="row text-center" style="background-color: #28c728">
+  <div class="col-md-12 text-center">
+
+    <ul class="messages text-center">
+      {% for message in messages %}
+      <h5 class="text-center mt-3">{{ message }}</h5>
+      {% endfor %}
+    </ul>
+  </div>
+
+</div>
+{% endif %}
+
+
+
+{% if project.developer.id == user.id%}
+
+
+<div class="container">
+  <div class="row" style="background-color:">
+    <div class="mt-4 offset-md-0 col-md-12 text-center">
+    <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Welcome {{user.username}}</h1>
+    <p class="lead">This page shows the macro-questions you can answer for the project <b>{{project.title}}</b></p>
+<!--     <p class="lead">{{project.content}}</p>
+ -->  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="mt-3 card mb-12">
+    <div class="row no-gutters">
+      <div class="col-md-2" style="background-color: #6FEDB8">
+        <div class="card-body text-center">
+          <b><h7 class="card-title mt-3">Categorisation</h7></b>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if project.initialquestion.initial_one %}
+          <a href="{% url 'initialquestionstoanswer' project.id %}"><h5 class="card-title">Categorisation questions</h5></a>
+          <p class="card-text"><small class="text-muted">Initial questions regarding the final customers and solution areas</small></p>
+        </div>
+      </div>
+      <div class="mt-3 col-md-2">
+        <a href="{% url 'initialquestionsdetail' project.id%}" class="mt-2 btn btn-primary btn-block"> See your answers </a>
+        <a href="{% url 'initialquestionsedit' project.id%}" class="mt-2 btn btn-light btn-block"> Edit the question </a>
+        <p style="color: green">Completed </p>
+      </div>
+      {% else %}
+      <a href="{% url 'initialquestionstoanswer' project.id %}"><h5 class="card-title">Categorisation questions</h5></a>
+      <p class="card-text"><small class="text-muted">Initial questions regarding the final customers and solution areas</small></p>
+    </div>
+  </div>
+  <div class="mt-3 col-md-2">
+    <a href="{% url 'initialquestionstoanswer' project.id %}" class="btn btn-primary btn-block"> Answer the questions </a>
+    <p style="color: red"> Not completed yet - Answer the questions to see your statistics </p>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+  <div class="mt-3 card mb-12">
+    <div class="row no-gutters">
+      <div class="col-md-2" style="background-color: #6FEDB8">
+        <div class="card-body text-center">
+          <h1 class="card-title mt-3">1</h1>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if project.firstquestion.first_six %}
+          <a href="{% url 'firstquestionsdetail' project.id %}"><h5 class="card-title">User Centered Design</h5></a>
+          <p class="card-text"><small class="text-muted">Information on the beneficiaries of this project and the problem solved </small></p>
+        </div>
+      </div>
+      <div class="mt-3 col-md-2">
+        <a href="{% url 'statistics' project.id%}" class="mt-2 btn btn-primary btn-block"> See your statistics </a>
+        <a href="{% url 'firstquestionsdetail' project.id%}" class="mt-2 btn btn-primary btn-block"> See your answers </a>
+        <a href="{% url 'firstquestionsedit' project.id%}" class="mt-2 btn btn-light btn-block"> Edit the question </a>
+        <p style="color: green">Completed </p>
+      </div>
+      {% else %}
+      <a href="{% url 'firstquestionstoanswer' project.id %}"><h5 class="card-title">User Centered Design</h5></a>
+      <p class="card-text"><small class="text-muted">Information on the beneficiaries of this project and the problem solved</small></p>
+    </div>
+  </div>
+  <div class="mt-3 col-md-2">
+    <a href="{% url 'firstquestionstoanswer' project.id %}" class="btn btn-primary btn-block"> Answer the questions </a>
+    <p style="color: red"> Not completed yet - Answer the questions to see your statistics </p>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+
+  <div class="mt-3 card mb-12">
+    <div class="row no-gutters">
+      <div class="col-md-2" style="background-color: #6FEDB8">
+        <div class="card-body text-center">
+          <h1 class="card-title mt-3">2</h1>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if project.secondquestion.second_eight %}
+          <a href="{% url 'secondquestionsdetail' project.id %}"><h5 class="card-title">Maintenance of the value proposition
+</h5></a>
+          <p class="card-text"><small class="text-muted">Information on the solution and its key aspects and value proposition</small></p>
+        </div>
+      </div>
+      <div class="mt-3 col-md-2">
+        <a href="{% url 'statistics' project.id%}" class="mt-2 btn btn-primary btn-block"> See your statistics </a>
+        <a href="{% url 'secondquestionsdetail' project.id%}" class="mt-2 btn btn-primary btn-block"> See your answers </a>
+        <a href="{% url 'secondquestionsedit' project.id%}" class="mt-2 btn btn-light btn-block"> Edit the question </a>
+        <p style="color: green">Completed </p>
+      </div>
+      {% else %}
+      <a href="{% url 'secondquestionstoanswer' project.id %}"><h5 class="card-title">Maintenance of the value proposition</h5></a>
+      <p class="card-text"><small class="text-muted">Information on the solution and its key aspects and value proposition</small></p>
+    </div>
+  </div>
+  <div class="mt-3 col-md-2">
+    <a href="{% url 'secondquestionstoanswer' project.id %}" class="btn btn-primary btn-block"> Answer the questions </a>
+    <p style="color: red"> Not completed yet - Answer the questions to see your statistics </p>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+
+<div class="mt-3 card mb-12">
+    <div class="row no-gutters">
+      <div class="col-md-2" style="background-color: #6FEDB8">
+        <div class="card-body text-center">
+          <h1 class="card-title mt-3">3</h1>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if project.thirdquestion.third_five %}
+          <a href="{% url 'thirdquestionsdetail' project.id %}"><h5 class="card-title">Data use
+</h5></a>
+          <p class="card-text"><small class="text-muted">Information on how the data is gathered, used and stored</small></p>
+        </div>
+      </div>
+      <div class="mt-3 col-md-2">
+        <a href="{% url 'statistics' project.id%}" class="mt-2 btn btn-primary btn-block"> See your statistics </a>
+        <a href="{% url 'thirdquestionsdetail' project.id%}" class="mt-2 btn btn-primary btn-block"> See your answers </a>
+        <a href="{% url 'thirdquestionsedit' project.id%}" class="mt-2 btn btn-light btn-block"> Edit the question </a>
+        <p style="color: green">Completed </p>
+      </div>
+      {% else %}
+
+      <a href="{% url 'thirdquestionstoanswer' project.id %}"><h5 class="card-title">Data use</h5></a>
+      <p class="card-text"><small class="text-muted">Information on how the data is gathered, used and stored</small></p>
+    </div>
+  </div>
+  <div class="mt-3 col-md-2">
+    <a href="{% url 'thirdquestionstoanswer' project.id %}" class="btn btn-primary btn-block"> Answer the questions </a>
+    <p style="color: red"> Not completed yet - Answer the questions to see your statistics </p>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+
+<div class="mt-3 card mb-12">
+    <div class="row no-gutters">
+      <div class="col-md-2" style="background-color: #6FEDB8">
+        <div class="card-body text-center">
+          <h1 class="card-title mt-3">4</h1>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if project.fourthquestion.fourth_one %}
+          <a href="{% url 'fourthquestionsdetail' project.id %}"><h5 class="card-title">Data protection
+</h5></a>
+          <p class="card-text"><small class="text-muted">Information on how the data is protected</small></p>
+        </div>
+      </div>
+      <div class="mt-3 col-md-2">
+        <a href="{% url 'statistics' project.id%}" class="mt-2 btn btn-primary btn-block"> See your statistics </a>
+        <a href="{% url 'fourthquestionsdetail' project.id%}" class="mt-2 btn btn-primary btn-block"> See your answers </a>
+        <a href="{% url 'fourthquestionsedit' project.id%}" class="mt-2 btn btn-light btn-block"> Edit the question </a>
+        <p style="color: green">Completed </p>
+      </div>
+      {% else %}
+      <a href="{% url 'fourthquestionstoanswer' project.id %}"><h5 class="card-title">Data protection</h5></a>
+      <p class="card-text"><small class="text-muted">Information on how the data is protected</small></p>
+    </div>
+  </div>
+  <div class="mt-3 col-md-2">
+    <a href="{% url 'fourthquestionstoanswer' project.id %}" class="btn btn-primary btn-block"> Answer the questions </a>
+    <p style="color: red"> Not completed yet - Answer the questions to see your statistics </p>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+
+<div class="mt-3 card mb-12">
+    <div class="row no-gutters">
+      <div class="col-md-2" style="background-color: #6FEDB8">
+        <div class="card-body text-center">
+          <h1 class="card-title mt-3">5</h1>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if project.fifthquestion.fifth_one %}
+          <a href="{% url 'fifthquestionsdetail' project.id %}"><h5 class="card-title">Openness
+</h5></a>
+          <p class="card-text"><small class="text-muted">Information regarding how the data is shared with other entities</small></p>
+        </div>
+      </div>
+      <div class="mt-3 col-md-2">
+        <a href="{% url 'statistics' project.id%}" class="mt-2 btn btn-primary btn-block"> See your statistics </a>
+        <a href="{% url 'fifthquestionsdetail' project.id%}" class="mt-2 btn btn-primary btn-block"> See your answers </a>
+        <a href="{% url 'fifthquestionsedit' project.id%}" class="mt-2 btn btn-light btn-block"> Edit the question </a>
+        <p style="color: green">Completed </p>
+      </div>
+      {% else %}
+      <a href="{% url 'fifthquestionstoanswer' project.id %}"><h5 class="card-title">Openness</h5></a>
+      <p class="card-text"><small class="text-muted">Information regarding how the data is shared with other entities</small></p>
+    </div>
+  </div>
+  <div class="mt-3 col-md-2">
+    <a href="{% url 'fifthquestionstoanswer' project.id %}" class="btn btn-primary btn-block"> Answer the questions </a>
+    <p style="color: red"> Not completed yet - Answer the questions to see your statistics </p>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+<div class="mt-3 card mb-12">
+    <div class="row no-gutters">
+      <div class="col-md-2" style="background-color: #6FEDB8">
+        <div class="card-body text-center">
+          <h1 class="card-title mt-3">6</h1>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if project.sixthquestion.sixth_thirteen %}
+          <a href="{% url 'sixthquestionsdetail' project.id %}"><h5 class="card-title">Transparency in data science
+</h5></a>
+          <p class="card-text"><small class="text-muted">Information on the limitations of the dataset, quantity and quality</small></p>
+        </div>
+      </div>
+      <div class="mt-3 col-md-2">
+        <a href="{% url 'statistics' project.id%}" class="mt-2 btn btn-primary btn-block"> See your statistics </a>
+        <a href="{% url 'sixthquestionsdetail' project.id%}" class="mt-2 btn btn-primary btn-block"> See your answers </a>
+        <a href="{% url 'sixthquestionsedit' project.id%}" class="mt-2 btn btn-light btn-block"> Edit the question </a>
+        <p style="color: green">Completed </p>
+      </div>
+      {% else %}
+      <a href="{% url 'sixthquestionstoanswer' project.id %}"><h5 class="card-title">Transparency in data science</h5></a>
+      <p class="card-text"><small class="text-muted">Information on the limitations of the dataset, quantity and quality</small></p>
+    </div>
+  </div>
+  <div class="mt-3 col-md-2">
+    <a href="{% url 'sixthquestionstoanswer' project.id %}" class="btn btn-primary btn-block"> Answer the questions </a>
+    <p style="color: red"> Not completed yet - Answer the questions to see your statistics </p>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+<div class="mt-3 card mb-12">
+    <div class="row no-gutters">
+      <div class="col-md-2" style="background-color: #6FEDB8">
+        <div class="card-body text-center">
+          <h1 class="card-title mt-3">7</h1>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if project.seventhquestion.seventh_five %}
+          <a href="{% url 'seventhquestionsdetail' project.id %}"><h5 class="card-title">Expaindability and Ethical use
+</h5></a>
+          <p class="card-text"><small class="text-muted">Information on the ethics and auditability</small></p>
+        </div>
+      </div>
+      <div class="mt-3 col-md-2">
+        <a href="{% url 'statistics' project.id%}" class="mt-2 btn btn-primary btn-block"> See your statistics </a>
+        <a href="{% url 'seventhquestionsdetail' project.id%}" class="mt-2 btn btn-primary btn-block"> See your answers </a>
+        <a href="{% url 'seventhquestionsedit' project.id%}" class="mt-2 btn btn-light btn-block"> Edit the question </a>
+        <p style="color: green">Completed </p>
+      </div>
+      {% else %}
+      <a href="{% url 'seventhquestionstoanswer' project.id %}"><h5 class="card-title">Expaindability and Ethical use</h5></a>
+      <p class="card-text"><small class="text-muted">Information on the ethics and auditability</small></p>
+    </div>
+  </div>
+  <div class="mt-3 col-md-2">
+    <a href="{% url 'seventhquestionstoanswer' project.id %}" class="btn btn-primary btn-block"> Answer the questions </a>
+    <p style="color: red"> Not completed yet - Answer the questions to see your statistics </p>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+
+<div class="mt-3 card mb-12">
+    <div class="row no-gutters">
+      <div class="col-md-2" style="background-color: #6FEDB8">
+        <div class="card-body text-center">
+          <h1 class="card-title mt-3">8</h1>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if project.eighthquestion.eighth_one %}
+          <a href="{% url 'eighthquestionsdetail' project.id %}"><h5 class="card-title">Risk and Rewards
+
+</h5></a>
+          <p class="card-text"><small class="text-muted">Information on risks and rewards</small></p>
+        </div>
+      </div>
+      <div class="mt-3 col-md-2">
+        <a href="{% url 'statistics' project.id%}" class="mt-2 btn btn-primary btn-block"> See your statistics </a>
+        <a href="{% url 'eighthquestionsdetail' project.id%}" class="mt-2 btn btn-primary btn-block"> See your answers </a>
+        <a href="{% url 'eighthquestionsedit' project.id%}" class="mt-2 btn btn-light btn-block"> Edit the question </a>
+        <p style="color: green">Completed </p>
+      </div>
+      {% else %}
+      <a href="{% url 'eighthquestionstoanswer' project.id %}"><h5 class="card-title">Risk and Rewards
+</h5></a>
+      <p class="card-text"><small class="text-muted">Information on risks and rewards</small></p>
+    </div>
+  </div>
+  <div class="mt-3 col-md-2">
+    <a href="{% url 'eighthquestionstoanswer' project.id %}" class="btn btn-primary btn-block"> Answer the questions </a>
+    <p style="color: red"> Not completed yet - Answer the questions to see your statistics </p>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+
+<div class="mt-3 card mb-12">
+    <div class="row no-gutters">
+      <div class="col-md-2" style="background-color: #6FEDB8">
+        <div class="card-body text-center">
+          <h1 class="card-title mt-3">9</h1>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if project.ninthquestion.ninth_nine %}
+          <a href="{% url 'ninthquestionsdetail' project.id %}"><h5 class="card-title">Data solutions
+</h5></a>
+          <p class="card-text"><small class="text-muted">Information on data standards</small></p>
+        </div>
+      </div>
+      <div class="mt-3 col-md-2">
+        <a href="{% url 'statistics' project.id%}" class="mt-2 btn btn-primary btn-block"> See your statistics </a>
+        <a href="{% url 'ninthquestionsdetail' project.id%}" class="mt-2 btn btn-primary btn-block"> See your answers </a>
+        <a href="{% url 'ninthquestionsedit' project.id%}" class="mt-2 btn btn-light btn-block"> Edit the question </a>
+        <p style="color: green">Completed </p>
+      </div>
+      {% else %}
+      <a href="{% url 'ninthquestionstoanswer' project.id %}"><h5 class="card-title">Data solutions</h5></a>
+      <p class="card-text"><small class="text-muted">Information on data standards</small></p>
+    </div>
+  </div>
+  <div class="mt-3 col-md-2">
+    <a href="{% url 'ninthquestionstoanswer' project.id %}" class="btn btn-primary btn-block"> Answer the questions </a>
+    <p style="color: red"> Not completed yet - Answer the questions to see your statistics </p>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+
+<div class="mt-3 card mb-12">
+    <div class="row no-gutters">
+      <div class="col-md-2" style="background-color: #6FEDB8">
+        <div class="card-body text-center">
+          <h1 class="card-title mt-3">10</h1>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          {% if project.tenthquestion.tenth_eleven %}
+          <a href="{% url 'tenthquestionsdetail' project.id %}"><h5 class="card-title">Commercial issues
+</h5></a>
+          <p class="card-text"><small class="text-muted">Information on IP and terms of use</small></p>
+        </div>
+      </div>
+      <div class="mt-3 col-md-2">
+        <a href="{% url 'statistics' project.id%}" class="mt-2 btn btn-primary btn-block"> See your statistics </a>
+        <a href="{% url 'tenthquestionsdetail' project.id%}" class="mt-2 btn btn-primary btn-block"> See your answers </a>
+        <a href="{% url 'tenthquestionsedit' project.id%}" class="mt-2 btn btn-light btn-block"> Edit the question </a>
+        <p style="color: green">Completed </p>
+      </div>
+      {% else %}
+      <a href="{% url 'tenthquestionstoanswer' project.id %}"><h5 class="card-title">Commercial issues</h5></a>
+      <p class="card-text"><small class="text-muted">Information on IP and terms of use</small></p>
+    </div>
+  </div>
+  <div class="mt-3 col-md-2">
+    <a href="{% url 'tenthquestionstoanswer' project.id %}" class="btn btn-primary btn-block"> Answer the questions </a>
+    <p style="color: red"> Not completed yet - Answer the questions to see your statistics </p>
+  </div>
+  {% endif %}
+</div>
+</div>
+
+  </div>
+</div>
+
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+
+
+{% endblock %}

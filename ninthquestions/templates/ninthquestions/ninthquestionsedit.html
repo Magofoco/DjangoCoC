@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block title %}Ninth set{% endblock %}
+{% block content %}
+{% load static %}
+{% if project.developer.id == user.id %}
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2> Data solutions</h2>
+      <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+
+        <label  class="mt-3" for="exampleFormControlTextarea1">Are you working to any NHS data standard?
+        </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="ninth_nine" id="exampleRadios1" value="Yes" >
+          <label class="form-check-label" for="exampleRadios1">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="ninth_nine" id="exampleRadios2" value="No" checked >
+          <label class="form-check-label" for="exampleRadios2">
+            No
+          </label>
+        </div>
+
+
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Identify any standard you are working to:</label>
+          <textarea class="form-control" id="exampleFormControlTextarea2" rows="5" name="ninth_one">{{project.ninthquestion.ninth_one}}</textarea>
+        </div>
+
+
+
+        <label for="customFile1">Upload the security and data methodology used to sign, develop and implement your solution:</label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile1" name="ninth_two" accept="application/pdf" >
+          <label class="custom-file-label" for="customFile1">Choose PDF file</label>
+          <script>
+            $('#customFile1').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+          <label class="mt-4" for="customFile2"> Upload the progress and responsible officers you deploy to handle incidents:
+          </label>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile2" name="ninth_three" accept="application/pdf" >
+            <label class="custom-file-label" for="customFile2">Choose PDF file</label>
+            <script>
+              $('#customFile2').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea2" class="mt-4">How do you ensure your suppliers work to the same standard?</label>
+            <textarea class="form-control" id="exampleFormControlTextarea2" rows="5" name="ninth_four" >{{project.ninthquestion.ninth_four}}</textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea3">How do you ensure your customers work to same standards?</label>
+            <textarea class="form-control" id="exampleFormControlTextarea3" rows="5" name="ninth_five" >{{project.ninthquestion.ninth_five}}</textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea4">How do you ensure your solution is protected from attacks?
+            </label>
+            <textarea class="form-control" id="exampleFormControlTextarea4" rows="5" name="ninth_six" >{{project.ninthquestion.ninth_six}}</textarea>
+          </div>
+
+          <label class="mt-4" for="customFile3"> Please upload your risk and mitigation register
+          </label>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile3" name="ninth_seven" accept="application/pdf" >
+            <label class="custom-file-label" for="customFile3">Choose PDF file</label>
+            <script>
+              $('#customFile3').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+          <button type="submit" class="mt-4 btn btn-primary">Edit your Data solutions edited answers</button>
+        </form>
+      </div>
+      {%else%}
+
+      <div class="container">
+        <div class="row" style="background-color: red">
+          <div class="mt-4 offset-md-2 col-md-8 text-center">
+            <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+          </div>
+          <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+            <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+          </div>
+        </div>
+      </div>
+
+      {% endif %}
+
+    </div>
+  </div>
+  {% endblock %}
+
+

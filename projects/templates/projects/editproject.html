@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Edit Project{% endblock %}
+{% block content %}
+
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2>Edit project {{project.title}}</h2>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Title of the project</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="title">{{project.title}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Brief description of this project</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content">{{project.content}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Edit project</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

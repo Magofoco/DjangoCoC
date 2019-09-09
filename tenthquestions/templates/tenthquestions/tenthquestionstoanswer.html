@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% block title %}Tenth set{% endblock %}
+{% block content %}
+{% load static %}
+{% if project.developer.id == user.id %}
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2>Commercial issues</h2>
+      <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+
+      <label for="customFile1">What third parties have contributed to your solution?</label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile1" name="tenth_one" accept="application/pdf">
+          <label class="custom-file-label" for="customFile1">Choose PDF file</label>
+          <script>
+            $('#customFile1').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+        <label class="mt-4" for="customFile2"> What are the terms of use associated with these parties contributions?:
+        </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile2" name="tenth_two" accept="application/pdf" >
+          <label class="custom-file-label" for="customFile2">Choose PDF file</label>
+          <script>
+            $('#customFile2').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+        <label class="mt-4" for="customFile3">What are your terms of use?
+        </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile3" name="tenth_three" accept="application/pdf" >
+          <label class="custom-file-label" for="customFile3">Choose PDF file</label>
+          <script>
+            $('#customFile3').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+
+      <div class="mt-4 form-group">
+          <label for="exampleFormControlTextarea1">What are the costs associated with third party contributions?:</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="tenth_four" >{{project.tenthquestion.tenth_four}}</textarea>
+        </div>
+
+
+        <label class="mt-4" for="customFile4">What is the IP embedded in your solution?
+        </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile4" name="tenth_five" accept="application/pdf" >
+          <label class="custom-file-label" for="customFile4">Choose PDF file</label>
+          <script>
+            $('#customFile4').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+
+
+        <div class="mt-4 form-group">
+          <label for="exampleFormControlTextarea2">What IP is created by use of your solution?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea2" rows="5" name="tenth_six">{{project.tenthquestion.tenth_six}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea3">Who owns the embedded IP?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea3" rows="5" name="tenth_seven" >{{project.tenthquestion.tenth_seven}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea4">Who will own the IP created?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea4" rows="5" name="tenth_eight" >{{project.tenthquestion.tenth_eight}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea5">What are the terms of use of the IP embedded in the solution?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea5" rows="5" name="tenth_nine" >{{project.tenthquestion.tenth_nine}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea6">What are the terms of use of the IP created by your solution?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea6" rows="5" name="tenth_ten" >{{project.tenthquestion.tenth_ten}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea7">Who is the commercial point of contact in your organisation responsible for the solution? <b>(Mandatory)</b>
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea7" rows="5" name="tenth_eleven" required>{{project.tenthquestion.tenth_eleven}}</textarea>
+        </div>
+
+
+  <button type="submit" class="mt-4 btn btn-primary">Submit your Commercial issues answers</button>
+        </form>
+          <a class="mt-4 btn btn-light" href="{% url 'projectdetail' project.id %}">Go back</a>
+
+      </div>
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+    </div>
+  </div>
+  {% endblock %}
+
+

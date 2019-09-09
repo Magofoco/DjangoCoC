@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block title %}Second set{% endblock %}
+{% block content %}
+{% if project.developer.id == user.id or user.is_nhs %}
+
+<div class="container">
+  <div class="row" style="background-color: ">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h4>You are viewing the answers to:</h4>
+            <h2>Maintenance of the value proposition</h2>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row" style="background-color: ">
+    <div class="mt-4 offset-md-0 col-md-8">
+            <h2>Maintenance of the value proposition</h2>
+    </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Who monitors the problem development?</h5>
+          <p class="card-text"><small class="text-muted">{{project.secondquestion.second_one}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>What are you doing to maintain a focus on the problem?</h5>
+          <p class="card-text"><small class="text-muted">{{project.secondquestion.second_two}}</small></p>
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>What are you doing to integrate the solution within existing systems?</h5>
+          <p class="card-text"><small class="text-muted">{{project.secondquestion.second_three}}</small></p>
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>What problems does your solution not solve?</h5>
+          <p class="card-text"><small class="text-muted">{{project.secondquestion.second_four}}</small></p>
+        </div>
+      </div>
+            <div class="col-md-8">
+        <div class="card-body">
+          <h5>What role has the user got in the provision of the solution?</h5>
+          <p class="card-text"><small class="text-muted">{{project.secondquestion.second_five}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>How does the solution improve clinical/social outcomes?</h5>
+          <p class="card-text"><small class="text-muted">{{project.secondquestion.second_six}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>What is the return on public money invested in it?</h5>
+          <p class="card-text"><small class="text-muted">{{project.secondquestion.second_seven}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>Has this return been independently verified?</h5>
+          <p class="card-text"><small class="text-muted">{{project.secondquestion.second_eight}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5>If yes, by who? If no, leave blank</h5>
+          <p class="card-text"><small class="text-muted">{{project.secondquestion.second_nine}}</small></p>
+        </div>
+      </div>
+
+    {% if project.developer.id == user.id %}
+
+    <a href="{% url 'secondquestionsedit' project.id %}" class="btn btn-primary btn-block"> Edit Maintenance of the value proposition questions</a>
+
+    {% endif %}
+
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+
+
+  </div>
+</div>
+{% endblock %}
+
+

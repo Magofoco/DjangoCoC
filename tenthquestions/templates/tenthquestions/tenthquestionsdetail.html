@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block title %}Tenth set{% endblock %}
+{% block content %}
+{% if project.developer.id == user.id or user.is_nhs%}
+
+<div class="container">
+  <div class="row" style="background-color:">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h4>You are viewing the answers to:</h4>
+      <h2>Commercial issues</h2>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row" style="background-color: ">
+    <div class="mt-4 offset-md-0 col-md-8">
+      <h2>Commercial issues</h2>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5>What third parties have contributed to your solution?</h5>
+          {% if project.tenthquestion.tenth_one != "There-is-no-file" and project.tenthquestion.tenth_one%}
+            <a href="{{ MEDIA_URL }}{{project.tenthquestion.tenth_one.url}}">See your uploaded PDF</a>
+          {% endif %}
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5>What are the terms of use associated with these parties contributions?
+        </h5>
+          {% if project.tenthquestion.tenth_two != "There-is-no-file" and project.tenthquestion.tenth_two %}
+            <a href="{{ MEDIA_URL }}{{project.tenthquestion.tenth_two.url}}">See your uploaded PDF</a>
+          {% endif %}
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5>What are your terms of use?
+        </h5>
+          {% if project.tenthquestion.tenth_three != "There-is-no-file" and project.tenthquestion.tenth_three%}
+            <a href="{{ MEDIA_URL }}{{project.tenthquestion.tenth_three.url}}">See your uploaded PDF</a>
+          {% endif %}
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5>What are the costs associated with third party contributions?
+        </h5>
+        <p class="card-text"><small class="text-muted">{{project.tenthquestion.tenth_four}}</small></p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5>What is the IP embedded in your solution?
+        </h5>
+          {% if project.tenthquestion.tenth_five != "There-is-no-file" and project.tenthquestion.tenth_five%}
+            <a href="{{ MEDIA_URL }}{{project.tenthquestion.tenth_five.url}}">See your uploaded PDF</a>
+          {% endif %}
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5>What IP is created by use of your solution?
+        </h5>
+        <p class="card-text"><small class="text-muted">{{project.tenthquestion.tenth_six}}</small></p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5>Who owns the embedded IP?</h5>
+        <p class="card-text"><small class="text-muted">{{project.tenthquestion.tenth_seven}}</small></p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5>Who will own the IP created?</h5>
+        <p class="card-text"><small class="text-muted">{{project.tenthquestion.tenth_eight}}</small></p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5>What are the terms of use of the IP embedded in the solution?</h5>
+        <p class="card-text"><small class="text-muted">{{project.tenthquestion.tenth_nine}}</small></p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5>What are the terms of use of the IP created by your solution?</h5>
+        <p class="card-text"><small class="text-muted">{{project.tenthquestion.tenth_ten}}</small></p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5>Who is the commercial point of contact in your organisation responsible for the solution? <b>(Mandatory)</b></h5>
+        <p class="card-text"><small class="text-muted">{{project.tenthquestion.tenth_eleven}}</small></p>
+      </div>
+    </div>
+
+{% if project.developer.id == user.id %}
+
+    <a href="{% url 'tenthquestionsedit' project.id %}" class="btn btn-primary btn-block"> Edit Commercial issues</a>
+{% endif %}
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+
+
+  </div>
+</div>
+    {% endblock %}
+
+
+

@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block title %}Second set{% endblock %}
+{% block content %}
+<!-- {% load crispy_forms_tags %}
+
+
+
+<form method="post" action="{% url 'secondquestionstoanswer' project.pk %}">>
+  {% csrf_token %}
+  {{ form|crispy}}
+  <button type="submit">Submit</button>
+</form>
+-->
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+{% if project.developer.id == user.id %}
+
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2> Maintenance of the value proposition </h2>
+      <h5>Second set of ten macroquestions</h5>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group mt-4">
+          <label for="exampleFormControlTextarea1">Who monitors the problem development?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="second_one">{{project.secondquestion.second_one}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">What are you doing to maintain a focus on the problem?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="second_two">{{project.secondquestion.second_two}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">What are you doing to integrate the solution within existing systems?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="second_three">{{project.secondquestion.second_three}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">What problems does your solution not solve?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="second_four">{{project.secondquestion.second_four}}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">What role has the user got in the provision of the solution?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="second_five">{{project.secondquestion.second_five}}</textarea>
+        </div>
+              <div class="form-group">
+        <label for="exampleFormControlTextarea1">How does the solution improve clinical/social outcomes?
+</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="second_six">{{project.secondquestion.second_six}}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">What is the return on public money invested in it?</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="second_seven">{{project.secondquestion.second_seven}}</textarea>
+      </div>
+
+        <label for="exampleFormControlTextarea1">Has this return been independently verified?
+        </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="second_eight" id="exampleRadios1" value="Yes" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="second_eight" id="exampleRadios2" value="No">
+          <label class="form-check-label" for="exampleRadios2">
+            No
+          </label>
+        </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">If yes, by who? If no, leave blank</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="second_nine">{{project.secondquestion.second_nine}}</textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit your Maintenance of the value proposition answers</button>
+    </form>
+  </div>
+
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+
+</div>
+</div>
+
+
+
+
+{% endblock %}

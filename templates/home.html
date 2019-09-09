@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated and not user.is_nhs %}
+<div class="container">
+  <div class="row" style="background-color:">
+    <div class="mt-4 offset-md-3 col-md-6 text-center">
+      <h2></h2>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+<div class="jumbotron">
+  <h1 class="display-4">Welcome {{user.username}}</h1>
+  <p class="mt-4 lead">
+    Feel free to create a new project, answer the questions and check the stastistics.
+  </p>
+  <hr class="my-4">
+  <h5>Each new project will have eleven macro-questions to be answered. This is needed to evaluate your project</h5>
+  <p class="ml-3 lead">
+    The macro-questions are:
+    <ol style="list-style-type:none">
+      <li class="lead">0. Categorisation</li>
+      <li class="lead">1. User sentered design</li>
+      <li class="lead">2. Maintenance of the value proposition</li>
+      <li class="lead">3. Data use</li>
+      <li class="lead">4. Data protection</li>
+      <li class="lead">5. Openness</li>
+      <li class="lead">6. Transparencty in data science</li>
+      <li class="lead">7. Explainability and ethical use</li>
+      <li class="lead">8. Risks and rewards</li>
+      <li class="lead">9. Data solutions </li>
+      <li class="lead">10. Commercial issues</li>
+    </ol>
+  </p>
+  <p class="mt-4 ml-4 lead">
+    <a class="btn btn-primary btn" href="{% url 'createproject'%}" role="button">Create project</a>
+    <a class="btn btn-primary btn" href="{% url 'allprojects' %}" role="button">My projects</a>
+  </p>
+</div>
+    </div>
+    </div>
+</div>
+
+{% elif user.is_authenticated and user.is_nhs %}
+
+<div class="container">
+  <div class="row" style="background-color:">
+    <div class="mt-4 offset-md-3 col-md-6 text-center">
+      <h2></h2>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+<div class="jumbotron">
+  <h1 class="display-4">Welcome {{user.username}}</h1>
+  <p class="lead">This is the welcome page of the website.
+    Feel free to browse the projects and check their statistics or display the rankings.
+  </p>
+  <hr class="my-4">
+  <p>Code of Conduct is an app built to facilitates the selections of projects/solutions of third parties for NHS health</p>
+  <p class="lead">
+    <a class="btn btn-primary btn" href="{% url 'allprojects'%}" role="button">Explore projects</a>
+    <a class="btn btn-primary btn" href="{% url 'nhsstatistics' %}" role="button">See rankings</a>
+
+  </p>
+</div>
+    </div>
+    </div>
+</div>
+
+{% else %}
+
+<div class="container">
+  <div class="row" style="background-color:">
+     <div class="mt-2 col-sm-12">
+<div class="mt-4 jumbotron">
+  <h1 class="display-4 text-center">Welcome to Code of Conduct</h1>
+  <p class="lead mt-4 text-center">Code of Conduct is a website that facilitates the communication between NHS and third parties in the selection of the best solutions for health related issues.</p>
+  <p class="lead mt-4 text-center">Please, feel free to signup and login to the website in accordance to the conditions</p>
+<p class="lead text-center">
+  <a class="btn btn-primary text-center" href="{%url 'conditions'%}" role="button">Conditions</a>
+</p>
+</div>
+<!--   <hr class="my-4">
+  <p class="lead text-center">
+    <a class="btn btn-primary btn " href="{%url 'conditions'%}" role="button">Learn more</a>
+  </p> -->
+</div>
+  </div>
+    <div class="row align-items-center">
+      <div class="mt-2 col-sm-6 text-center" style="background-color:">
+<!--           <p>For agencies</p>
+          <a href="{% url 'login'%}" class="btn btn-primary">Login</a>
+          <a href="{% url 'signup'%}" class="btn btn-primary">Signup</a> -->
+          <div style="background:rgba(0, 255, 98, 0.1) !important" class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">FOR AGENCIES</h1>
+    <p class="lead">If you are an agency that has developed a data driven solution, and wish to provide evidence of compliance please sign up and login</p>
+            <a href="{% url 'login'%}" class="btn btn-primary">Login</a>
+          <a href="{% url 'signup'%}" class="btn btn-primary">Signup</a>
+  </div>
+</div>
+      </div>
+      <div class="mt-2 col-sm-6 text-center" style="background-color:">
+        <div  style="background:rgba(0, 98, 255, 0.1) !important" class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">FOR NHS</h1>
+    <p class="lead">If you operate in the NHS and wish to view compliance details and solutions provided by agencies please sign up and login here</p>
+              <a href="{% url 'login'%}" class="btn btn-primary">Login</a>
+          <a href="{% url 'signupnhs'%}" class="btn btn-primary">Signup</a>
+  </div>
+</div>
+<!--           <p>For nhs</p>
+          <a href="{% url 'login'%}" class="btn btn-primary">Login</a>
+          <a href="{% url 'signupnhs'%}" class="btn btn-primary">Signup</a> -->
+      </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}

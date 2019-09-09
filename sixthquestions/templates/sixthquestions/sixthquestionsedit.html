@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% block title %}Sixth set{% endblock %}
+{% block content %}
+{% load static %}
+{% if project.developer.id == user.id %}
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+
+<div class="container">
+  <div class="row">
+    <div class="mt-4 offset-md-3 col-md-6">
+      <h2>Edit Transparency in data science</h2>
+      <h5>Sixth set of ten macroquestions</h5>
+      <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+        <h5>For your solution upload:</h5>
+
+        <label  class="mt-3" for="exampleFormControlTextarea1">Is the transparency of your solution auditable?
+        </label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="sixth_thirteen" id="exampleRadios1" value="Yes" >
+          <label class="form-check-label" for="exampleRadios1">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="sixth_thirteen" id="exampleRadios2" value="No" checked >
+          <label class="form-check-label" for="exampleRadios2">
+            No
+          </label>
+        </div>
+        <label for="customFile1">Your review of the data used to create the solution e.g. data quality, completeness...
+        </label>
+        <div class="mt-2 mb-4 custom-file">
+          <input type="file" class="custom-file-input" id="customFile1" name="sixth_one" accept="application/pdf">
+          <label class="custom-file-label" for="customFile1">{{project.sixthquestion.sixth_one}}</label>
+          <script>
+            $('#customFile1').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+        <label for="customFile2"> Your analysis of any limitations in the data set:
+        </label>
+        <div class="mb-4 custom-file">
+          <input type="file" class="custom-file-input" id="customFile2" name="sixth_two" accept="application/pdf">
+          <label class="custom-file-label" for="customFile2">{{project.sixthquestion.sixth_two}}</label>
+          <script>
+            $('#customFile2').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+        <label for="customFile3"> Your rationale for limiting the data set:
+        </label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="customFile3" name="sixth_three" accept="application/pdf">
+          <label class="custom-file-label" for="customFile3">{{project.sixthquestion.sixth_three}}</label>
+          <script>
+            $('#customFile3').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+        <label for="customFile4"> Your procedure for monitoring the appropriateness of existing processes:
+        </label>
+        <div class="mb-4 custom-file">
+          <input type="file" class="custom-file-input" id="customFile4" name="sixth_four" accept="application/pdf">
+          <label class="custom-file-label" for="customFile4">{{project.sixthquestion.sixth_four}}>
+          <script>
+            $('#customFile4').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+        <label for="customFile5">Your understanding of the risks associated with the data used for training and in deployment:
+        </label>
+        <div class=" mb-4 custom-file">
+          <input type="file" class="custom-file-input" id="customFile5" name="sixth_five" accept="application/pdf">
+          <label class="custom-file-label" for="customFile5" >{{project.sixthquestion.sixth_five}}</label>
+          <script>
+            $('#customFile5').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+        <label for="customFile6">How do you audit the decisions made with data?
+        </label>
+        <div class="mb-4 custom-file">
+          <input type="file" class="custom-file-input" id="customFile6" name="sixth_six" accept="application/pdf">
+          <label class="custom-file-label" for="customFile6">{{project.sixthquestion.sixth_six}}</label>
+          <script>
+            $('#customFile6').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+
+        <label for="customFile7">How do you mitigate the risks associated with the data used?
+        </label>
+        <div class="mb-4 custom-file">
+          <input type="file" class="custom-file-input" id="customFile7" name="sixth_seven" accept="application/pdf">
+          <label class="custom-file-label" for="customFile7">{{project.sixthquestion.sixth_seven}}</label>
+          <script>
+            $('#customFile7').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+              })
+            </script>
+          </div>
+
+
+
+          <div class="form-group">
+          <label for="exampleFormControlTextarea1">Which external libraries do you apply in your solution?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="sixth_eight">{{project.sixthquestion.sixth_eight}}</textarea>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea2">Where is the dataset used maintained?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea2" rows="5" name="sixth_nine">{{project.sixthquestion.sixth_nine}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea3">Who designed, developed and implemented the data science associated with your solution?
+
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea3" rows="5" name="sixth_ten">{{project.sixthquestion.sixth_ten}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea4">What was the reason you decided to issue your solution?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea4" rows="5" name="sixth_eleven">{{project.sixthquestion.sixth_eleven}}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlTextarea5">On what date do you expect to release and update your solution?
+          </label>
+          <textarea class="form-control" id="exampleFormControlTextarea5" rows="5" name="sixth_twelve">{{project.sixthquestion.sixth_twelve}}</textarea>
+        </div>
+
+
+
+  <button type="submit" class="mt-4 btn btn-primary">Edit your Transparency in data science answers</button>
+        </form>
+      </div>
+{%else%}
+
+<div class="container">
+  <div class="row" style="background-color: red">
+    <div class="mt-4 offset-md-2 col-md-8 text-center">
+      <h5>You are NOT allowed to edit/view this project because it does not belong to you but it was created by a different user</h5>
+    </div>
+    <div class="mt-2 offset-md-0 col-md-12 text-center">
+
+    <a class="btn btn-primary" href="{% url 'allprojects' %}">My projects</a>
+    </div>
+  </div>
+</div>
+
+  {% endif %}
+    </div>
+  </div>
+  {% endblock %}
+
+
